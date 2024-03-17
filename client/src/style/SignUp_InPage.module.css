@@ -1,0 +1,65 @@
+.parent {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.child {
+    width: 30vw;
+    background-color: rgba(115, 161, 202, 0.2);
+    height: 40vh;
+    border-radius: 12px;
+}
+
+.Header {
+    display: flex;
+    justify-content: center;
+}
+
+.inputFields {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        input {
+            margin-top: 5%;
+            width: 80%;
+            height: 4vh;
+        }
+    }
+}
+
+.isAdminField {
+    display: flex;
+    justify-content: center;
+    margin-left: 8%;
+    flex-direction: column;
+    margin-top: 3%;
+
+    input {
+        outline: none;
+        border: none;
+    }
+}
+
+.reg_login {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+
+    button {
+        background-color: rgb(50, 161, 208);
+        border: none;
+        outline: none;
+        height: 4vh;
+        border-radius: 8px;
+
+    }
+}
