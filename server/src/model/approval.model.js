@@ -9,11 +9,16 @@ const ApprovalSchema = new mongoose.Schema({
     productInfo: {
         type: {
             productId: {
-                type: String,
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Product",
                 required: true
             },
             changesForApproval: {
                 type: {
+                    productName: {
+                        type: String,
+                        required: true
+                    },
                     price: {
                         type: String,
                         required: true
@@ -22,14 +27,10 @@ const ApprovalSchema = new mongoose.Schema({
                         type: [String],
                         required: true
                     },
-                    ProductDescription: {
+                    productDescription: {
                         type: String,
                         required: true
                     },
-                    _id: {
-                        type: String,
-                        required: true
-                    }
                 },
                 required: true
 
@@ -39,10 +40,21 @@ const ApprovalSchema = new mongoose.Schema({
                 required: true
             },
             isApproved: {
-                type: Boolean,
+                type: {
+                    approvedBy: {
+                        type: mongoose.Schema.Types.ObjectId,
+                        ref: "User",
+                    },
+                    approved:{
+                        type: Boolean,
+                        required: true
+                    }
+                },
                 required: true
             }
         },
         required: true
     }
 }, { timestamps: true })
+
+export const Request = mongoose.model("Request", ApprovalSchema)
