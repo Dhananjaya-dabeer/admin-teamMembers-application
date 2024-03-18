@@ -60,6 +60,6 @@
         outline: none;
         height: 4vh;
         border-radius: 8px;
-
+        cursor: pointer;
     }
 }

@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.parent {
+    width: 100vw;
+    height: 100vh;
+}
+
+
+.nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: aqua;
+    height: 8vh;
+
+    div {
+        cursor: pointer;
+    }
+
+    div:hover {
+        text-decoration: underline;
+    }
+
+}
+
+.admin_temaMember {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 3%;
+    margin-top: 1%;
+    color: blue;
+}

@@ -1,0 +1,77 @@
+.parent {
+    height: 100vh;
+    background-color: grey;
+}
+
+.child {
+    padding: 5%;
+}
+
+.renderedElements {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.image {
+
+
+    img {
+        width: 80%;
+    }
+}
+
+.productInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    div {
+        margin-bottom: 3%;
+    }
+}
+
+.makeChnages {
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 20%;
+        height: 5vh;
+        background-color: rgb(109, 197, 109);
+        border: none;
+        outline: none;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.editFieldComp {
+    z-index: 10;
+    width: 50%;
+    left: 25%;
+    top: 25%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: rgb(183, 214, 213);
+
+    .croosElement {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+
+        img {
+            width: 3%;
+            cursor: pointer;
+            margin: 2% 2% 0 0;
+        }
+    }
+}

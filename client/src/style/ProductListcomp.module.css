@@ -1,0 +1,26 @@
+.child {
+    padding: 2%;
+}
+
+
+.productList {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+
+.renderedProducts {
+    width: 20%;
+
+
+    .renderedImage {
+        width: 70%;
+
+        img {
+            width: 100%;
+            cursor: pointer;
+        }
+    }
+
+}

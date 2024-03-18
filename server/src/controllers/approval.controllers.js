@@ -8,11 +8,32 @@ export const approval = asyncHandler(async (req, res) => {
     const { userId, productInfo } = req.body
 
     const verification = await User.findOne({ _id: userId })
+    if (verification.isAdmin == true) {
+        let updatedFields = {}
 
+
+        if (productInfo.productName) {
+            updatedFields["productName"] = productInfo.productName
+        }
+        if (productInfo.price) {
+            updatedFields["price"] = productInfo.price
+        }
+        if (productInfo.image) {
+            updatedFields["image"] = productInfo.image
+        }
+        if (productInfo.productDescription) {
+            updatedFields["productDescription"] = productInfo.productDescription
+        }
+
+        await Product.updateOne({ "_id": productInfo.productId }, { $set: updatedFields })
+        return res.json({
+            message: "Changed as admin Successfully"
+        })
+    }
     if (verification && productInfo) {
 
         const particularUserRequests = await Request.find({ userId: userId })
-        const uniqueRequestVerification = particularUserRequests.filter((item) => item.productInfo.isPending == true)
+        const uniqueRequestVerification = particularUserRequests.filter((item) => item.productInfo.isPending == true && item.productInfo.productId == productInfo.productId)
 
         if (uniqueRequestVerification.length) {
             return res.json({
@@ -55,8 +76,21 @@ export const approval = asyncHandler(async (req, res) => {
 
 export const requestData = asyncHandler(async (req, res) => {
     const { userId } = req.query
+    
     if (userId) {
         const fetchParticularRequest = await Request.find({ userId: userId })
+
+        const verifyAsAdmin = await User.findOne({_id: userId})
+
+    if(verifyAsAdmin.isAdmin == true){
+       const fetchAlltoApporove = await Request.find()
+        return res.json({
+            data: fetchAlltoApporove
+        })
+    }
+
+
+
 
         if (fetchParticularRequest.length) {
             return res.json({
@@ -79,7 +113,7 @@ export const approveRequest = asyncHandler(async (req, res) => {
     const { adminId, isApproved, isPending, productId, memberId } = req.body
 
     const findUser = await User.findById({ _id: adminId })
-    if (!findUser.isAdmin) {
+    if (findUser.isAdmin == "false") {
         return res.json({
             status: "Not Authorized",
             message: "You are not Authorized to approve"
@@ -91,14 +125,13 @@ export const approveRequest = asyncHandler(async (req, res) => {
         // const uniqueRequestVerification = await Request.find({"userId" : memberId, "productInfo.productId": productId})
         // uniqueRequestVerification && uniqueRequestVerification.map((item) => item.productInfo.isApproved.approved === true )
         // console.log(isApproved)
-        if (isApproved == "true") {
+        if (isApproved == true) {
             await Request.updateOne(
-                { "userId": memberId, "productInfo.productId": productId, "productInfo.isApproved.approved": true, "productInfo.isPending": false },
+                { "userId": memberId, "productInfo.productId": productId, "productInfo.isApproved.approved": false, "productInfo.isPending": true },
                 { $set: { "productInfo.isPending": isPending, "productInfo.isApproved.approved": isApproved, "productInfo.isApproved.approvedBy": adminId } }
             )
             const requestToUpdate = await Request.findOne({ "userId": memberId, "productInfo.productId": productId })
             let updatedFields = {}
-            console.log(requestToUpdate)
 
             if (requestToUpdate.productInfo.changesForApproval.productName) {
                 updatedFields["productName"] = requestToUpdate.productInfo.changesForApproval.productName
@@ -118,9 +151,9 @@ export const approveRequest = asyncHandler(async (req, res) => {
                 message: "Approved Successfully"
             })
         }
-        if (isApproved == "false") {
+        if (isApproved == false) {
             await Request.updateOne(
-                { "userId": memberId, "productInfo.productId": productId, "productInfo.isApproved.approved": false, "productInfo.isPending": false },
+                { "userId": memberId, "productInfo.productId": productId, "productInfo.isApproved.approved": false, "productInfo.isPending": true },
                 { $set: { "productInfo.isPending": isPending, "productInfo.isApproved.approved": isApproved, "productInfo.isApproved.approvedBy": adminId } }
             )
             res.json({

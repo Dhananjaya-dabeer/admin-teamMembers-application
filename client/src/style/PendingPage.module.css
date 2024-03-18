@@ -1,0 +1,64 @@
+.parentImgInfo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 5%;
+    align-self: center;
+}
+
+.child {
+    padding: 3%;
+}
+
+.img {
+    .smallImg {
+        display: flex;
+        flex-direction: row;
+
+        img {
+            width: 3vw;
+        }
+    }
+
+    img {
+        width: 20vw
+    }
+}
+
+.bold {
+    font-weight: 700;
+    color: black;
+}
+
+.name,
+.productDescription,
+.price {
+    margin-bottom: 10%;
+}
+
+.isPending {
+    color: red;
+}
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    width: 13%;
+
+    .approve {
+        background-color: green;
+        border: none;
+        outline: none;
+        width: 60%;
+        height: 4vh;
+        cursor: pointer;
+    }
+
+    .reject {
+        cursor: pointer;
+        width: 30%;
+        background-color: red;
+        border: none;
+        outline: none;
+    }
+}
