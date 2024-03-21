@@ -11,7 +11,7 @@ const PendingPage = () => {
     try {
       (async () => {
         const requestData = await axios.get(
-          `http://localhost:4000/api/v3/approval/requestdata?userId=${userId}`
+          `https://admin-teammembers-application.onrender.com/api/v3/approval/requestdata?userId=${userId}`
         );
         if (requestData.data.data) {
           setRequestInfo(requestData.data.data);
@@ -54,7 +54,7 @@ const PendingPage = () => {
     };
     try {
       const postRequest = await axios.patch(
-        "http://localhost:4000/api/v3/approval/approvalRequest",
+        "https://admin-teammembers-application.onrender.com/api/v3/approval/approvalRequest",
         request
       );
 

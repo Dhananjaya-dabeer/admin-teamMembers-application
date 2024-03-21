@@ -27,7 +27,7 @@ const EditFieldComp = ({ prop }) => {
 
     try {
       const postProductInfo = await axios.post(
-        "http://localhost:4000/api/v3/approval/modify",
+        "https://admin-teammembers-application.onrender.com/api/v3/approval/modify",
         {
           userId,
           productInfo,

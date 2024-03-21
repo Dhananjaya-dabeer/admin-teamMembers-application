@@ -12,7 +12,7 @@ const ProductListcomp = () => {
     (async () => {
       try {
         const productData = await axios.get(
-          "http://localhost:4000/api/v2/products/data/products"
+          "https://admin-teammembers-application.onrender.com/api/v2/products/data/products"
         );
         setData(productData.data.data);
       } catch (error) {
