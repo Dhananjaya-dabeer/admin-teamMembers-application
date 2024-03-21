@@ -35,7 +35,7 @@ const PendingPage = () => {
     };
     try {
       const postRequest = await axios.patch(
-        "http://localhost:4000/api/v3/approval/approvalRequest",
+        "https://admin-teammembers-application.onrender.com/api/v3/approval/approvalRequest",
         request
       );
 
